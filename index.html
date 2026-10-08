@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Biography</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Link Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <header>
+        <div class="logo">NRG FX // Audio-Biography</div>
+        <div class="status-badge">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="statusText">Paused</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Left: Narrative / Eras -->
+        <div class="content-section">
+            <div>
+                <span class="era-tag" id="eraTag">Chapter 01 // 2018 - 2020</span>
+                <h1 id="eraTitle">The Lo-Fi Genesis</h1>
+            </div>
+            <p class="bio-description" id="eraDescription">
+                Started coding late at night fueled by coffee and ambient instrumental loops. This era was all about learning fundamentals, building clumsy static pages, and falling in love with the problem-solving craft of web development.
+            </p>
+
+            <div class="playlist" id="playlist">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </div>
+
+        <!-- Right: Vinyl Visualizer -->
+        <div class="player-visual">
+            <div class="turntable-deck">
+                <div class="vinyl-record" id="vinylRecord">
+                    <div class="record-label">
+                        <span id="labelTrackNo">TRK 01</span>
+                        <p id="labelYear">2018</p>
+                    </div>
+                    <div class="center-hole"></div>
+                </div>
+                <div class="tonearm" id="tonearm">
+                    <div class="tonearm-base"></div>
+                    <div class="tonearm-stick"></div>
+                    <div class="tonearm-head"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="player-controls">
+            <button class="control-btn" id="prevBtn" title="Previous Era">⏮</button>
+            <button class="control-btn" id="playPauseBtn" title="Play / Pause">▶</button>
+            <button class="control-btn" id="nextBtn" title="Next Era">⏭</button>
+        </div>
+        <div class="now-playing-ticker">
+            Now Playing: <strong id="tickerTitle">Late Night Lo-Fi</strong>
+        </div>
+    </footer>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer" preload="auto"></audio>
+
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

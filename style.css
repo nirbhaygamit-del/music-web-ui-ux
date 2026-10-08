@@ -1,0 +1,403 @@
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent: #ec4899;
+    --accent-glow: rgba(236, 72, 153, 0.4);
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 1s ease;
+}
+
+/* Ambient Background Glow */
+.ambient-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+/* Header */
+header {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.status-dot.playing {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 var(--accent-glow); }
+    70% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+    100% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+}
+
+/* Main Container */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Left Column: Bio & Era Selector */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.era-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.bio-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* Playlist / Era Nav */
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.playlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.playlist-item:hover {
+    border-color: var(--text-secondary);
+    transform: translateX(5px);
+}
+
+.playlist-item.active {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.track-info-small h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.track-info-small span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.play-icon {
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+/* Right Column: Vinyl Player Visual */
+.player-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.turntable-deck {
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, #1a1f2c 0%, #0f141f 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.vinyl-record {
+    width: 300px;
+    height: 300px;
+    background: #111;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+    background-image: 
+        radial-gradient(circle, transparent 30%, rgba(255,255,255,0.05) 31%, transparent 32%),
+        radial-gradient(circle, transparent 45%, rgba(255,255,255,0.04) 46%, transparent 47%),
+        radial-gradient(circle, transparent 60%, rgba(255,255,255,0.03) 61%, transparent 62%),
+        radial-gradient(circle, transparent 75%, rgba(255,255,255,0.02) 76%, transparent 77%);
+    transition: transform 0.5s ease;
+}
+
+.vinyl-record.spinning {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.record-label {
+    width: 110px;
+    height: 110px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    transition: background-color 0.8s ease;
+}
+
+.record-label span {
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.center-hole {
+    width: 12px;
+    height: 12px;
+    background: var(--bg-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Tonearm */
+.tonearm {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 140px;
+    height: 180px;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top right;
+    transform: rotate(-25deg);
+}
+
+.tonearm.active {
+    transform: rotate(5deg);
+}
+
+.tonearm-base {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    background: #2a344a;
+    border-radius: 50%;
+    border: 2px solid #475569;
+}
+
+.tonearm-stick {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    width: 4px;
+    height: 130px;
+    background: linear-gradient(to bottom, #94a3b8, #cbd5e1);
+    border-radius: 2px;
+}
+
+.tonearm-head {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    width: 12px;
+    height: 25px;
+    background: #1e293b;
+    border-radius: 3px;
+}
+
+/* Footer / Player Controls */
+footer {
+    padding: 1.5rem 5%;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.control-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.control-btn:hover {
+    border-color: var(--accent);
+    background: var(--card-bg);
+    color: var(--accent);
+}
+
+.now-playing-ticker {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.now-playing-ticker strong {
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem 0;
+    }
+
+    .player-visual {
+        order: -1;
+    }
+
+    .turntable-deck {
+        width: 280px;
+        height: 280px;
+    }
+
+    .vinyl-record {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    header, footer {
+        padding: 1rem 5%;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .turntable-deck {
+        width: 240px;
+        height: 240px;
+    }
+
+    .vinyl-record {
+        width: 210px;
+        height: 210px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
